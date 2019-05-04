@@ -121,6 +121,27 @@
     <value>ELIONIX</value>
   </data>
   <data name="1001" xml:space="preserve">
-    <value>コメント</value>
+    <value>コメント生成拡張機能</value>
+  </data>
+  <data name="CategoryConstants" xml:space="preserve">
+    <value>定数</value>
+  </data>
+  <data name="DescriptionAuthor" xml:space="preserve">
+    <value>ドキュメントコメントのauthor項目において使用される、開発者の名前。</value>
+  </data>
+  <data name="DescriptionCopyright" xml:space="preserve">
+    <value>ドキュメントコメントのnote項目において使用される、コピーライト表記。</value>
+  </data>
+  <data name="DescriptionDateFormat" xml:space="preserve">
+    <value>DateTime.ToString関数で使用されるものと同じ形式の、日付フォーマット文字列。</value>
+  </data>
+  <data name="DisplayNameAuthor" xml:space="preserve">
+    <value>開発者</value>
+  </data>
+  <data name="DisplayNameCopyright" xml:space="preserve">
+    <value>コピーライト</value>
+  </data>
+  <data name="DisplayNameDateFormat" xml:space="preserve">
+    <value>日付フォーマット</value>
   </data>
 </root>

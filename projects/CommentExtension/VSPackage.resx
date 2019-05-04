@@ -121,6 +121,27 @@
     <value>ELIONIX</value>
   </data>
   <data name="1001" xml:space="preserve">
-    <value>Comment</value>
+    <value>Comment generator</value>
+  </data>
+  <data name="CategoryConstants" xml:space="preserve">
+    <value>Constants</value>
+  </data>
+  <data name="DescriptionAuthor" xml:space="preserve">
+    <value>Name used for author item of document comment.</value>
+  </data>
+  <data name="DescriptionCopyright" xml:space="preserve">
+    <value>Copyright notation used for note items in document comments.</value>
+  </data>
+  <data name="DescriptionDateFormat" xml:space="preserve">
+    <value>Date format string in the same format as used in DateTime.ToString function.</value>
+  </data>
+  <data name="DisplayNameAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="DisplayNameCopyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="DisplayNameDateFormat" xml:space="preserve">
+    <value>Date format</value>
   </data>
 </root>

@@ -21,19 +21,19 @@ namespace CommentExtension
 	//--------------------------------------------------------------------------------------------//
 	public class SettingPage : DialogPage
 	{
-		[Category("Comment Constants")]
-		[DisplayName("Copyright")]
-		[Description("Copyright notation used for note items in document comments")]
+		[LocalizedCategory("Constants")]
+		[LocalizedDisplayName("Copyright")]
+		[LocalizedDescription("Copyright")]
 		public string Copyright { get; set; } = "Copyright (c) ELIONIX.Inc. All rights reserved.";
 
-		[Category("Comment Constants")]
-		[DisplayName("Author")]
-		[Description("Name used for author item of document comment")]
+		[LocalizedCategory("Constants")]
+		[LocalizedDisplayName("Author")]
+		[LocalizedDescription("Author")]
 		public string Author { get; set; } = "ELIONIX";
 
-		[Category("Comment Constants")]
-		[DisplayName("Date format")]
-		[Description("Date format")]
+		[LocalizedCategory("Constants")]
+		[LocalizedDisplayName("DateFormat")]
+		[LocalizedDescription("DateFormat")]
 		public string DateFormat { get; set; } = "YYYY-MM-DD";
 	}
 }

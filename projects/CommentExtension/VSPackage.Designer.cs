@@ -70,11 +70,74 @@ namespace CommentExtension {
         }
         
         /// <summary>
-        ///   Comment に類似しているローカライズされた文字列を検索します。
+        ///   Comment generator に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _1001 {
             get {
                 return ResourceManager.GetString("1001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Constants に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CategoryConstants {
+            get {
+                return ResourceManager.GetString("CategoryConstants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Name used for author item of document comment. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionAuthor {
+            get {
+                return ResourceManager.GetString("DescriptionAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Copyright notation used for note items in document comments. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionCopyright {
+            get {
+                return ResourceManager.GetString("DescriptionCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Date format string in the same format as used in DateTime.ToString function. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionDateFormat {
+            get {
+                return ResourceManager.GetString("DescriptionDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Author に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameAuthor {
+            get {
+                return ResourceManager.GetString("DisplayNameAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Copyright に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameCopyright {
+            get {
+                return ResourceManager.GetString("DisplayNameCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Date format に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameDateFormat {
+            get {
+                return ResourceManager.GetString("DisplayNameDateFormat", resourceCulture);
             }
         }
     }
