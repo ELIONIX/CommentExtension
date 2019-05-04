@@ -48,6 +48,9 @@
     <Compile Include="AddCommentCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommentExtensionPackage.cs" />
+    <Compile Include="SettingPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

@@ -1,4 +1,9 @@
-﻿using System;
+﻿//************************************************************************************************//
+//! @author SAITO Takamasa
+//! @date   2019-05-03
+//! @note   Copyright (c) ELIONIX.Inc. All rights reserved.
+//************************************************************************************************//
+using System;
 using System.ComponentModel.Design;
 using System.Globalization;
 using System.Threading;
@@ -92,6 +97,8 @@ namespace CommentExtension
 			ThreadHelper.ThrowIfNotOnUIThread();
 			string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
 			string title = "AddCommentCommand";
+
+			var package = this.package as CommentExtensionPackage;
 
 			// Show a message box to prove we were here
 			VsShellUtilities.ShowMessageBox(

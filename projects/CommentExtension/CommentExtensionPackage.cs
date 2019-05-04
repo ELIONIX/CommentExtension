@@ -1,4 +1,9 @@
-﻿using System;
+﻿//************************************************************************************************//
+//! @author SAITO Takamasa
+//! @date   2019-05-03
+//! @note   Copyright (c) ELIONIX.Inc. All rights reserved.
+//************************************************************************************************//
+using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell;
@@ -26,8 +31,18 @@ namespace CommentExtension
 	[PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 	[Guid(CommentExtensionPackage.PackageGuidString)]
 	[ProvideMenuResource("Menus.ctmenu", 1)]
+	[ProvideOptionPage(typeof(SettingPage), "ELIONIX", "Comment", 0, 0, true)]
 	public sealed class CommentExtensionPackage : AsyncPackage
 	{
+		/// <summary>ユーザー設定のオブジェクト</summary>
+		public SettingPage Setting
+		{
+			get
+			{
+				return (SettingPage)GetDialogPage(typeof(SettingPage));
+			}
+		}
+
 		/// <summary>
 		/// CommentExtensionPackage GUID string.
 		/// </summary>
