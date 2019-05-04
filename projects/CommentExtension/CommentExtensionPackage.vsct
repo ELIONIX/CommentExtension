@@ -54,7 +54,7 @@
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidCommentExtensionPackageCmdSet" id="AddCommentCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCommentExtensionPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="Eicons" id="Eicon16" />
         <Strings>
           <ButtonText>Generate comment for syntax</ButtonText>
         </Strings>
@@ -72,6 +72,7 @@
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
       <Bitmap guid="guidImages" href="Resources\AddCommentCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="Eicons" href="Resources\E_clear_16.png" usedList="Eicon16"/>
     </Bitmaps>
   </Commands>
 
@@ -83,6 +84,10 @@
     <GuidSymbol name="guidCommentExtensionPackageCmdSet" value="{eb516ee8-3a5f-4230-8814-a9cbd50587eb}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="AddCommentCommandId" value="0x0100" />
+    </GuidSymbol>
+
+    <GuidSymbol name ="Eicons" value="{68CA2976-B391-457D-B01C-824A37D25257}">
+      <IDSymbol name ="Eicon16" value="1"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{cb728072-fefd-4162-b379-8d7988ccc083}" >
