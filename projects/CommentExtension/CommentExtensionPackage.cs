@@ -31,7 +31,7 @@ namespace CommentExtension
 	[PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 	[Guid(CommentExtensionPackage.PackageGuidString)]
 	[ProvideMenuResource("Menus.ctmenu", 1)]
-	[ProvideOptionPage(typeof(SettingPage), "ELIONIX", "Comment", 0, 0, true)]
+	[ProvideOptionPage(typeof(SettingPage), "ELIONIX", "Comment", 1000, 1001, true)]
 	public sealed class CommentExtensionPackage : AsyncPackage
 	{
 		/// <summary>ユーザー設定のオブジェクト</summary>
