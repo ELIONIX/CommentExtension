@@ -144,4 +144,10 @@
   <data name="DisplayNameDateFormat" xml:space="preserve">
     <value>日付フォーマット</value>
   </data>
+  <data name="ErrorMessageTitle" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="ErrorNoTarget" xml:space="preserve">
+    <value>コメント対象の要素がありません</value>
+  </data>
 </root>

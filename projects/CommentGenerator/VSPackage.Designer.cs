@@ -140,5 +140,23 @@ namespace CommentGenerator {
                 return ResourceManager.GetString("DisplayNameDateFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Failed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ErrorMessageTitle {
+            get {
+                return ResourceManager.GetString("ErrorMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   There is no element for comment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ErrorNoTarget {
+            get {
+                return ResourceManager.GetString("ErrorNoTarget", resourceCulture);
+            }
+        }
     }
 }
