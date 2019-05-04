@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentExtension", "projects\CommentExtension\CommentExtension.csproj", "{2D905AA6-BA4C-4666-B914-16A497D7A64B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentGenerator", "projects\CommentGenerator\CommentGenerator.csproj", "{2D905AA6-BA4C-4666-B914-16A497D7A64B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

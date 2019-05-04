@@ -13,8 +13,8 @@
     <ProjectGuid>{2D905AA6-BA4C-4666-B914-16A497D7A64B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommentExtension</RootNamespace>
-    <AssemblyName>CommentExtension</AssemblyName>
+    <RootNamespace>CommentGenerator</RootNamespace>
+    <AssemblyName>CommentGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <UseCodebase>true</UseCodebase>
@@ -45,7 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddCommentCommand.cs" />
+    <Compile Include="GenerateCommentCommand.cs" />
     <Compile Include="LocalizedAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommentExtensionPackage.cs" />
@@ -82,7 +82,7 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\AddCommentCommand.png" />
+    <Content Include="Resources\GenerateCommentCommand.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VSPackage.ja.resx" />

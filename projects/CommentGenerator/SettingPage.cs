@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 
-namespace CommentExtension
+namespace CommentGenerator
 {
 	//********************************************************************************************//
 	//--------------------------------------------------------------------------------------------//

@@ -1,10 +1,18 @@
-# CommentExtension
+# CommentGenerator
 
 クラスや関数の定義につける定型のコメント文の雛形を作成する機能を持ったVisualStudio拡張機能。  
 現在はC#のみ対応。
 
-authorの部分に挿入される名前は、Visual Studioの"ツール - オプション"メニューにおいて、ELIONIX - CommentExtensionカテゴリで変更出来る。  
-デフォルト設定ではELIONIXになるので、各自設定すること。
+Visual Studioの"ツール - オプション"メニューにおいて、ELIONIX - Comment generatorカテゴリで設定が変更出来る。  
+設定できる項目は以下の通り。
+
+|項目|説明|
+|:--|:--|
+|Author|@author部分に記述される開発者名。|
+|Copyright|ファイル先頭の@note部分に記述されるコピーライト表記。|
+|Date format|@date部分に記述される日付の書式設定文字列。|
+
+Authorはデフォルト設定ではELIONIXになるので、各自設定すること。
 
 ## C#での動作
 

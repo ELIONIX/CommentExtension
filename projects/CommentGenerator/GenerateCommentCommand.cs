@@ -13,12 +13,12 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
-namespace CommentExtension
+namespace CommentGenerator
 {
 	/// <summary>
 	/// Command handler
 	/// </summary>
-	internal sealed class AddCommentCommand
+	internal sealed class GenerateCommentCommand
 	{
 		/// <summary>
 		/// Command ID.
@@ -36,12 +36,12 @@ namespace CommentExtension
 		private readonly AsyncPackage package;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AddCommentCommand"/> class.
+		/// Initializes a new instance of the <see cref="GenerateCommentCommand"/> class.
 		/// Adds our command handlers for menu (commands must exist in the command table file)
 		/// </summary>
 		/// <param name="package">Owner package, not null.</param>
 		/// <param name="commandService">Command service to add command to, not null.</param>
-		private AddCommentCommand(AsyncPackage package, OleMenuCommandService commandService)
+		private GenerateCommentCommand(AsyncPackage package, OleMenuCommandService commandService)
 		{
 			this.package = package ?? throw new ArgumentNullException(nameof(package));
 			commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -54,7 +54,7 @@ namespace CommentExtension
 		/// <summary>
 		/// Gets the instance of the command.
 		/// </summary>
-		public static AddCommentCommand Instance
+		public static GenerateCommentCommand Instance
 		{
 			get;
 			private set;
@@ -77,12 +77,12 @@ namespace CommentExtension
 		/// <param name="package">Owner package, not null.</param>
 		public static async Task InitializeAsync(AsyncPackage package)
 		{
-			// Switch to the main thread - the call to AddCommand in AddCommentCommand's constructor requires
+			// Switch to the main thread - the call to AddCommand in GenerateCommentCommand's constructor requires
 			// the UI thread.
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
 			OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-			Instance = new AddCommentCommand(package, commandService);
+			Instance = new GenerateCommentCommand(package, commandService);
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace CommentExtension
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 			string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-			string title = "AddCommentCommand";
+			string title = "GenerateCommentCommand";
 
 			var package = this.package as CommentExtensionPackage;
 

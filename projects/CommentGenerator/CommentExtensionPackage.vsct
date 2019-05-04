@@ -52,7 +52,7 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidCommentExtensionPackageCmdSet" id="AddCommentCommandId" priority="0x0100" type="Button">
+      <Button guid="guidCommentExtensionPackageCmdSet" id="GenerateCommentCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCommentExtensionPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="Eicons" id="Eicon16" />
         <Strings>
@@ -71,7 +71,7 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\AddCommentCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="guidImages" href="Resources\GenerateCommentCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
       <Bitmap guid="Eicons" href="Resources\E_clear_16.png" usedList="Eicon16"/>
     </Bitmaps>
   </Commands>
@@ -83,7 +83,7 @@
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCommentExtensionPackageCmdSet" value="{eb516ee8-3a5f-4230-8814-a9cbd50587eb}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="AddCommentCommandId" value="0x0100" />
+      <IDSymbol name="GenerateCommentCommandId" value="0x0100" />
     </GuidSymbol>
 
     <GuidSymbol name ="Eicons" value="{68CA2976-B391-457D-B01C-824A37D25257}">

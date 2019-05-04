@@ -9,7 +9,7 @@ using System.Threading;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
-namespace CommentExtension
+namespace CommentGenerator
 {
 	/// <summary>
 	/// This is the class that implements the package exposed by this assembly.
@@ -62,7 +62,7 @@ namespace CommentExtension
 			// When initialized asynchronously, the current thread may be a background thread at this point.
 			// Do any initialization that requires the UI thread after switching to the UI thread.
 			await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-		    await AddCommentCommand.InitializeAsync(this);
+		    await GenerateCommentCommand.InitializeAsync(this);
 		}
 
 		#endregion
