@@ -34,6 +34,6 @@ namespace CommentGenerator
 		[LocalizedCategory("Constants")]
 		[LocalizedDisplayName("DateFormat")]
 		[LocalizedDescription("DateFormat")]
-		public string DateFormat { get; set; } = "YYYY-MM-DD";
+		public string DateFormat { get; set; } = "yyyy-MM-dd";
 	}
 }

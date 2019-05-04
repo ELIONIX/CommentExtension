@@ -124,15 +124,15 @@ namespace CommentGenerator
 			if (dte is null) {
 				return;
 			}
-
-			//ファイルの種類により分岐
+			
 			string fileName = dte.ActiveDocument.Name;
-			if (fileName is null || System.IO.Path.GetExtension(dte.ActiveDocument.Name) != ".cs") {
+			if (fileName is null) {
 				return;
 			}
 
-			if (System.IO.Path.GetExtension(dte.ActiveDocument.Name) != ".cs") {
-				GenerateCSharpComment(dte, fileName);
+			//ファイルの種類により分岐
+			if (System.IO.Path.GetExtension(dte.ActiveDocument.Name) == ".cs") {
+				GenerateCSharpComment(dte);
 			} else {
 				//それ以外のやつの時はエラーメッセージ
 				VsShellUtilities.ShowMessageBox(
@@ -145,7 +145,33 @@ namespace CommentGenerator
 			}
 		}
 
-		private void GenerateCSharpComment(DTE dte, string fileName)
+		private bool CheckElement(
+			FileCodeModel fcm,
+			TextSelection ts,
+			vsCMElement target,
+			Action<CodeElement> generator)
+		{
+			ThreadHelper.ThrowIfNotOnUIThread();
+
+			//以前はfcm.CodeElementFrompoint呼び出し時に
+			//ActivePointが指定と違う種類だった場合nullが返ってきた様だが（サンプルを見た感じ）
+			//いつの間にかCOMException例外が飛ぶようになっている
+			//例外が飛んだら何もしないで次の項目の判定へと進む
+
+			try {
+				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, target);
+				if (element != null && element.Kind == target) {
+					generator?.Invoke(element);
+					return true;
+				}
+			} catch (COMException) {
+				//何もしないで次の項目の判定へ
+			}
+
+			return false;
+		}
+
+		private void GenerateCSharpComment(DTE dte)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -155,7 +181,7 @@ namespace CommentGenerator
 			//ファイルの先頭行にカーソルがある場合は、
 			//fileコメントを生成する
 			if (ts.TopPoint.Line == 1 && ts.Text.Length == 0) {
-				GenerateFileComment(ts, fileName);
+				GenerateFileComment(ts);
 				return;
 			}
 
@@ -172,107 +198,54 @@ namespace CommentGenerator
 			//例外が飛んだら何もしないで次の項目の判定へと進む
 
 			//フィールド
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementVariable);
-				if (element != null && element.Kind == vsCMElement.vsCMElementVariable) {
-					GenerateFieldComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
-				//何もしないで次の項目の判定へ
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementVariable, element => GenerateFieldComment(ts, element))) {
+				return;
 			}
 
 			//プロパティ
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementProperty);
-				if (element != null && element.Kind == vsCMElement.vsCMElementProperty) {
-					GeneratePropertyComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementProperty, element => GeneratePropertyComment(ts, element))) {
+				return;
 			}
 
 			//イベント
 			//vsCMElementEventにしてもvsCMElementEventsDeclarationにしても引っかからない。謎。
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementEvent);
-				if (element != null && element.Kind == vsCMElement.vsCMElementEvent) {
-					GenerateEventComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementEvent, element => GenerateEventComment(ts, element))) {
+				return;
 			}
 
 			//デリゲート
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementDelegate);
-				if (element != null && element.Kind == vsCMElement.vsCMElementDelegate) {
-					GenerateDelegateComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementDelegate, element => GenerateDelegateComment(ts, element))) {
+				return;
 			}
 
 			//関数
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementFunction);
-				if (element != null && element.Kind == vsCMElement.vsCMElementFunction) {
-					GenerateFunctionComment(ts, (CodeFunction)element);
-					return;
-				}
-			} catch (COMException) {
-				//何もしないで次の項目の判定へ
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementFunction, element => GenerateFunctionComment(ts, element))) {
+				return;
 			}
 
 			//列挙型
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementEnum);
-				if (element != null && element.Kind == vsCMElement.vsCMElementEnum) {
-					GenerateEnumComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementEnum, element => GenerateEnumComment(ts, element))) {
+				return;
 			}
 
 			//構造体
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementStruct);
-				if (element != null && element.Kind == vsCMElement.vsCMElementStruct) {
-					GenerateStructComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementStruct, element => GenerateStructComment(ts, element))) {
+				return;
 			}
 
 			//interface
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementInterface);
-				if (element != null && element.Kind == vsCMElement.vsCMElementInterface) {
-					GenerateInterfaceComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementInterface, element => GenerateInterfaceComment(ts, element))) {
+				return;
 			}
 
 			//class
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementClass);
-				if (element != null && element.Kind == vsCMElement.vsCMElementClass) {
-					GenerateClassComment(ts, element);
-					return;
-				}
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementClass, element => GenerateClassComment(ts, element))) {
+				return;
 			}
 
 			//名前空間
-			try {
-				CodeElement element = fcm.CodeElementFromPoint(ts.ActivePoint, vsCMElement.vsCMElementNamespace);
-				if (element != null && element.Kind == vsCMElement.vsCMElementNamespace) {
-					GenerateNameSpaceComment(ts, element, dte);
-					return;
-				}
-
-			} catch (COMException) {
+			if (CheckElement(fcm, ts, vsCMElement.vsCMElementNamespace, element => GenerateNameSpaceComment(ts, element, dte))) {
+				return;
 			}
 
 			//それ以外のやつの時はエラーメッセージ
@@ -283,9 +256,6 @@ namespace CommentGenerator
 				OLEMSGICON.OLEMSGICON_CRITICAL,
 				OLEMSGBUTTON.OLEMSGBUTTON_OK,
 				OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-
-			//System.Windows.Forms.MessageBox.Show("コメント対象の要素がありません", "失敗"
-			///	, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation);
 		}
 
 		private string GetIndentText(TextSelection ts)
@@ -335,7 +305,7 @@ namespace CommentGenerator
 			ts.Insert(sb.ToString());
 		}
 
-		private void GenerateFileComment(TextSelection ts, string fileName)
+		private void GenerateFileComment(TextSelection ts)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -345,8 +315,8 @@ namespace CommentGenerator
 			List<string> comments = new List<string>();
 			comments.Add("//************************************************************************************************//");
 			comments.Add("//! @author " + author_);
-			comments.Add("//! @date   " + DateTime.Now.ToString("yyyy-MM-dd"));
-			comments.Add("//! @note   Copyright (c) ELIONIX.Inc. All rights reserved.");
+			comments.Add("//! @date   " + DateTime.Now.ToString(dateFormat_));
+			comments.Add("//! @note   " + copyright_);
 			comments.Add("//************************************************************************************************//");
 
 			//ファイルの先頭に移動
@@ -355,9 +325,11 @@ namespace CommentGenerator
 			InsertComments(ts, comments, "");
 		}
 
-		private void GenerateFunctionComment(TextSelection ts, CodeFunction functionInfo)
+		private void GenerateFunctionComment(TextSelection ts, CodeElement element)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
+
+			CodeFunction functionInfo = (CodeFunction)element;
 
 			List<string> comments = new List<string>();
 			comments.Add("//------------------------------------------------------------------------------------//");
