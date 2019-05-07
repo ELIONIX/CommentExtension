@@ -59,6 +59,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ja-JP\extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Licences\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -82,6 +89,14 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\E_clear_16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\E_clear_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\GenerateCommentCommand.png" />
   </ItemGroup>
   <ItemGroup>
