@@ -315,12 +315,13 @@ namespace CommentGenerator
 			//１行１行出力していくとコードレンズが重いので
 			//他の所と同じようにまとめて出力するように切り替える
 
-			List<string> comments = new List<string>();
-			comments.Add("//************************************************************************************************//");
-			comments.Add("//! @author " + author_);
-			comments.Add("//! @date   " + DateTime.Now.ToString(dateFormat_));
-			comments.Add("//! @note   " + copyright_);
-			comments.Add("//************************************************************************************************//");
+			List<string> comments = new List<string> {
+				"//************************************************************************************************//",
+				"//! @author " + author_,
+				"//! @date   " + DateTime.Now.ToString(dateFormat_),
+				"//! @note   " + copyright_,
+				"//************************************************************************************************//"
+			};
 
 			//ファイルの先頭に移動
 			ts.StartOfLine();
@@ -334,10 +335,11 @@ namespace CommentGenerator
 
 			CodeFunction functionInfo = (CodeFunction)element;
 
-			List<string> comments = new List<string>();
-			comments.Add("//------------------------------------------------------------------------------------//");
-			comments.Add("/// <summary>" + "</summary>");
-			comments.Add("/// ");
+			List<string> comments = new List<string> {
+				"//------------------------------------------------------------------------------------//",
+				"/// <summary>" + "</summary>",
+				"/// "
+			};
 
 			//ジェネリックな関数の場合typeparamコメントを追加する必要があるが
 			//関数が使用しているgeneric typeを取得するプロパティが無い
@@ -390,8 +392,9 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string>();
-			comments.Add("/// <summary>" + "</summary>");
+			List<string> comments = new List<string> {
+				"/// <summary>" + "</summary>"
+			};
 
 			//再度要素の先頭へ移動
 			ts.MoveToPoint(element.StartPoint);
@@ -442,10 +445,11 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string>();
-			comments.Add("//------------------------------------------------------------------------------------//");
-			comments.Add("/// <summary>" + "</summary>");
-			comments.Add("/// ");
+			List<string> comments = new List<string> {
+				"//------------------------------------------------------------------------------------//",
+				"/// <summary>" + "</summary>",
+				"/// "
+			};
 
 			for (int j = 1; j <= propertyInfo.Parameters.Count; ++j) {
 				CodeParameter paramInfo = (CodeParameter)propertyInfo.Parameters.Item(j);
@@ -473,10 +477,11 @@ namespace CommentGenerator
 
 			CodeDelegate delegateInfo = (CodeDelegate)element;
 
-			List<string> comments = new List<string>();
-			comments.Add("//------------------------------------------------------------------------------------//");
-			comments.Add("/// <summary>" + "</summary>");
-			comments.Add("/// ");
+			List<string> comments = new List<string> {
+				"//------------------------------------------------------------------------------------//",
+				"/// <summary>" + "</summary>",
+				"/// "
+			};
 
 			//FxCopの規約により引き数名はsenderとeになっているはずなので決め打ちする
 			//と行きたいところだけど、
@@ -510,14 +515,15 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string>();
-			comments.Add("//********************************************************************************************//");
-			comments.Add("//--------------------------------------------------------------------------------------------//");
-			comments.Add("/// <summary>" + "</summary>");
-			comments.Add("/// ");
-			comments.Add("/// <remarks>");
-			comments.Add("/// ");
-			comments.Add("/// </remarks>");
+			List<string> comments = new List<string> {
+				"//********************************************************************************************//",
+				"//--------------------------------------------------------------------------------------------//",
+				"/// <summary>" + "</summary>",
+				"/// ",
+				"/// <remarks>",
+				"/// ",
+				"/// </remarks>"
+			};
 
 			//ジェネリックなクラスの場合もジェネリック関数の時と同じ
 			var elementNames = fullName.Split('.');
@@ -569,15 +575,16 @@ namespace CommentGenerator
 			GenerateClassCommentCore(ts, element, fullName);
 		}
 
-		private void GenerateEnumCommentCore(TextSelection ts, CodeElement element, string defaultSummary)
+		private void GenerateEnumCommentCore(TextSelection ts, CodeElement element)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string>();
-			comments.Add("/// <summary>");
-			comments.Add("/// ");
-			comments.Add("/// </summary>");
-			comments.Add("//! @author " + author_);
+			List<string> comments = new List<string> {
+				"/// <summary>",
+				"/// ",
+				"/// </summary>",
+				"//! @author " + author_
+			};
 
 			//enum宣言の先頭へ移動
 			ts.MoveToPoint(element.StartPoint);
@@ -594,19 +601,21 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			GenerateEnumCommentCore(ts, element, "列挙型の説明");
+			GenerateEnumCommentCore(ts, element);
 		}
 
 		private void GenerateStructComment(TextSelection ts, CodeElement element)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			GenerateEnumCommentCore(ts, element, "構造体の説明");
+			GenerateEnumCommentCore(ts, element);
 		}
 
+		//名前空間に再対応するときのために取っておくが、
+		//警告対策のために全コメントアウト
+		/*
 		private void GenerateNameSpaceComment(TextSelection ts, CodeElement element, DTE dte)
 		{
-			/*
 			CodeNamespace nameSpaceInfo = (CodeNamespace)element;
 			string nameSpace = nameSpaceInfo.Name;
 
@@ -660,7 +669,6 @@ namespace CommentGenerator
 
 			//インデント無し
 			InsertComments(ts, comments, indent);
-			*/
 		}
 
 
@@ -707,5 +715,6 @@ namespace CommentGenerator
 				tempDirecotry = directoryInfo.FullName;
 			}
 		}
+		*/
 	}
 }
