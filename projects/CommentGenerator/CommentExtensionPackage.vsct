@@ -76,6 +76,10 @@
     </Bitmaps>
   </Commands>
 
+  <KeyBindings>
+    <KeyBinding guid="guidCommentExtensionPackageCmdSet" id="GenerateCommentCommandId" editor="guidVSStd97" key1="VK_OEM_1" mod1="Control Shift" />
+  </KeyBindings>
+
   <Symbols>
     <!-- This is the package guid. -->
     <GuidSymbol name="guidCommentExtensionPackage" value="{a0c45586-e96d-487b-987e-509534506bfe}" />
