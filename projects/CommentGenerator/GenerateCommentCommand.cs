@@ -120,11 +120,13 @@ namespace CommentGenerator
 		private void GenerateComment()
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
-			DTE dte = (DTE)this.ServiceProvider.GetServiceAsync(typeof(DTE)).Result;
+#pragma warning disable VSTHRD002 // 問題のある同期待機を避ける
+			DTE dte = (DTE)ServiceProvider.GetServiceAsync(typeof(DTE))?.Result;
 			if (dte is null) {
 				return;
 			}
-			
+#pragma warning restore VSTHRD002 // 問題のある同期待機を避ける
+
 			string fileName = dte.ActiveDocument.Name;
 			if (fileName is null) {
 				return;
@@ -243,10 +245,11 @@ namespace CommentGenerator
 				return;
 			}
 
-			//名前空間
+			//名前空間はxmlドキュメントコメントが対応するまでコメントの追加をしないことに↓。
+			/*
 			if (CheckElement(fcm, ts, vsCMElement.vsCMElementNamespace, element => GenerateNameSpaceComment(ts, element, dte))) {
 				return;
-			}
+			}*/
 
 			//それ以外のやつの時はエラーメッセージ
 			VsShellUtilities.ShowMessageBox(
