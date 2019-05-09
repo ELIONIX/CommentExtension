@@ -68,11 +68,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ja-JP\extension.vsixlangpack">
+    <Content Include="..\..\LICENSE.txt">
+      <Link>LICENSE.txt</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Licences\LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ja-JP\extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="key.snk" />

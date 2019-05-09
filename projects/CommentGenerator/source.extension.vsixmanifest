@@ -5,7 +5,7 @@
         <DisplayName>ELIONIX Document Comment Generator</DisplayName>
         <Description xml:space="preserve">Provide a context menu to generate a template for document comments in source code.</Description>
         <MoreInfo>https://github.com/ELIONIX/CommentGenerator</MoreInfo>
-        <License>Licences\LICENSE.txt</License>
+        <License>LICENSE.txt</License>
         <Icon>Resources\E_clear_32.png</Icon>
     </Metadata>
     <Installation>
