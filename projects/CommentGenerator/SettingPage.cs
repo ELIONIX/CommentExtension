@@ -21,17 +21,17 @@ namespace CommentGenerator
 	//--------------------------------------------------------------------------------------------//
 	public class SettingPage : DialogPage
 	{
-		[LocalizedCategory("Constants")]
-		[LocalizedDisplayName("Copyright")]
-		[LocalizedDescription("Copyright")]
-		public string Copyright { get; set; } = "Copyright (c) ELIONIX.Inc. All rights reserved.";
-
-		[LocalizedCategory("Constants")]
+		[LocalizedCategory("Signings")]
 		[LocalizedDisplayName("Author")]
 		[LocalizedDescription("Author")]
 		public string Author { get; set; } = "ELIONIX";
 
-		[LocalizedCategory("Constants")]
+		[LocalizedCategory("Signings")]
+		[LocalizedDisplayName("Copyright")]
+		[LocalizedDescription("Copyright")]
+		public string Copyright { get; set; } = "Copyright (c) ELIONIX.Inc. All rights reserved.";
+
+		[LocalizedCategory("Formats")]
 		[LocalizedDisplayName("DateFormat")]
 		[LocalizedDescription("DateFormat")]
 		public string DateFormat { get; set; } = "yyyy-MM-dd";

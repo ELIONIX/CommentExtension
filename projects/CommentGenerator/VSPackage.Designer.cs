@@ -88,6 +88,24 @@ namespace CommentGenerator {
         }
         
         /// <summary>
+        ///   Formats に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CategoryFormats {
+            get {
+                return ResourceManager.GetString("CategoryFormats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Signings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CategorySignings {
+            get {
+                return ResourceManager.GetString("CategorySignings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Name used for author item of document comment. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DescriptionAuthor {

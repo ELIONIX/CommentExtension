@@ -126,6 +126,12 @@
   <data name="CategoryConstants" xml:space="preserve">
     <value>定数</value>
   </data>
+  <data name="CategoryFormats" xml:space="preserve">
+    <value>フォーマット</value>
+  </data>
+  <data name="CategorySignings" xml:space="preserve">
+    <value>署名</value>
+  </data>
   <data name="DescriptionAuthor" xml:space="preserve">
     <value>ドキュメントコメントのauthor項目において使用される、開発者の名前。</value>
   </data>
