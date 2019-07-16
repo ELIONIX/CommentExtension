@@ -141,6 +141,12 @@
   <data name="DescriptionDateFormat" xml:space="preserve">
     <value>Date format string in the same format as used in DateTime.ToString function.</value>
   </data>
+  <data name="DescriptionDecoratesComment" xml:space="preserve">
+    <value>If set to true, add decoration to the comments of class, function and etc..</value>
+  </data>
+  <data name="DescriptionDecoratesFileHeader" xml:space="preserve">
+    <value>If set to true, add decoration to the file header comments.</value>
+  </data>
   <data name="DescriptionWritesCopyright" xml:space="preserve">
     <value>If set to true, write copyright to the file header.</value>
   </data>
@@ -152,6 +158,12 @@
   </data>
   <data name="DisplayNameDateFormat" xml:space="preserve">
     <value>Date format</value>
+  </data>
+  <data name="DisplayNameDecoratesComment" xml:space="preserve">
+    <value>Decorate comments</value>
+  </data>
+  <data name="DisplayNameDecoratesFileHeader" xml:space="preserve">
+    <value>Decorate file header</value>
   </data>
   <data name="DisplayNameWritesCopyright" xml:space="preserve">
     <value>Write copyright</value>

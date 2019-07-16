@@ -133,6 +133,24 @@ namespace CommentGenerator {
         }
         
         /// <summary>
+        ///   If set to true, add decoration to the comments of class, function and etc.. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionDecoratesComment {
+            get {
+                return ResourceManager.GetString("DescriptionDecoratesComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If set to true, add decoration to the file header comments. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionDecoratesFileHeader {
+            get {
+                return ResourceManager.GetString("DescriptionDecoratesFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   If set to true, write copyright to the file header. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DescriptionWritesCopyright {
@@ -165,6 +183,24 @@ namespace CommentGenerator {
         internal static string DisplayNameDateFormat {
             get {
                 return ResourceManager.GetString("DisplayNameDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Decorate comments に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameDecoratesComment {
+            get {
+                return ResourceManager.GetString("DisplayNameDecoratesComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Decorate file header に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameDecoratesFileHeader {
+            get {
+                return ResourceManager.GetString("DisplayNameDecoratesFileHeader", resourceCulture);
             }
         }
         

@@ -51,5 +51,19 @@ namespace CommentGenerator
 		[LocalizedDisplayName("DateFormat")]
 		[LocalizedDescription("DateFormat")]
 		public string DateFormat { get; set; } = "yyyy-MM-dd";
+
+		/// <summary>true: ファイルヘッダーのコメントに装飾を付ける</summary>
+		[DefaultValue(true)]
+		[LocalizedCategory("Formats")]
+		[LocalizedDisplayName("DecoratesFileHeader")]
+		[LocalizedDescription("DecoratesFileHeader")]
+		public bool DecoratesFileHeader { get; set; } = true;
+
+		/// <summary>true: クラスや関数等のコメントに装飾を付ける</summary>
+		[DefaultValue(true)]
+		[LocalizedCategory("Formats")]
+		[LocalizedDisplayName("DecoratesComment")]
+		[LocalizedDescription("DecoratesComment")]
+		public bool DecoratesComment { get; set; } = true;
 	}
 }
