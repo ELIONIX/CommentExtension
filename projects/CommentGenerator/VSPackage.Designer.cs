@@ -151,6 +151,15 @@ namespace CommentGenerator {
         }
         
         /// <summary>
+        ///   Decide where to write the author&apos;s sign. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionSignsAuthor {
+            get {
+                return ResourceManager.GetString("DescriptionSignsAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   If set to true, write copyright to the file header. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DescriptionWritesCopyright {
@@ -201,6 +210,15 @@ namespace CommentGenerator {
         internal static string DisplayNameDecoratesFileHeader {
             get {
                 return ResourceManager.GetString("DisplayNameDecoratesFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sign author に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameSignsAuthor {
+            get {
+                return ResourceManager.GetString("DisplayNameSignsAuthor", resourceCulture);
             }
         }
         

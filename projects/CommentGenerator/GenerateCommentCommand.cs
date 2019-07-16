@@ -1,8 +1,8 @@
-﻿//************************************************************************************************//
+﻿//================================================================================================//
 //! @author SAITO Takamasa
 //! @date   2019-05-03
 //! @note   Copyright (c) ELIONIX.Inc. All rights reserved.
-//************************************************************************************************//
+//================================================================================================//
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -330,7 +330,10 @@ namespace CommentGenerator
 				comments.Add(headerDecoration_);
 			}
 
-			comments.Add("//! @author " + setting_.Author);
+			if (setting_.SignsAuthor != AuthorSignKind.No) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
 			comments.Add("//! @date   " + DateTime.Now.ToString(setting_.DateFormat));
 
 			if (setting_.WritesCopyright) {
@@ -394,7 +397,10 @@ namespace CommentGenerator
 			}
 			comments.Add("/// <returns>" + "</returns>");
 			comments.Add("/// <exception cref=\"Exception\">" + "</exception>");
-			comments.Add("//! @author " + setting_.Author);
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
 			if (setting_.DecoratesComment) {
 				comments.Add(commentDecoration_);
 			}
@@ -481,7 +487,10 @@ namespace CommentGenerator
 			}
 
 			comments.Add("/// <returns>" + "</returns>");
-			comments.Add("//! @author " + setting_.Author);
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
 			if (setting_.DecoratesComment) {
 				comments.Add(commentDecoration_);
 			}
@@ -525,7 +534,10 @@ namespace CommentGenerator
 				}
 			}
 
-			comments.Add("//! @author " + setting_.Author);
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
 			if (setting_.DecoratesComment) {
 				comments.Add(commentDecoration_);
 			}
@@ -575,7 +587,10 @@ namespace CommentGenerator
 				}
 			}
 
-			comments.Add("//! @author " + setting_.Author);
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
 			if (setting_.DecoratesComment) {
 				comments.Add(classCommentDecoration2_);
 			}
@@ -622,7 +637,10 @@ namespace CommentGenerator
 			comments.Add("/// <summary>");
 			comments.Add("/// ");
 			comments.Add("/// </summary>");
-			comments.Add("//! @author " + setting_.Author);
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
 			if (setting_.DecoratesComment) {
 				comments.Add(classCommentDecoration2_);
 			}

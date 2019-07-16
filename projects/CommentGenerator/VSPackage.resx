@@ -147,6 +147,9 @@
   <data name="DescriptionDecoratesFileHeader" xml:space="preserve">
     <value>If set to true, add decoration to the file header comments.</value>
   </data>
+  <data name="DescriptionSignsAuthor" xml:space="preserve">
+    <value>Decide where to write the author's sign.</value>
+  </data>
   <data name="DescriptionWritesCopyright" xml:space="preserve">
     <value>If set to true, write copyright to the file header.</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="DisplayNameDecoratesFileHeader" xml:space="preserve">
     <value>Decorate file header</value>
+  </data>
+  <data name="DisplayNameSignsAuthor" xml:space="preserve">
+    <value>Sign author</value>
   </data>
   <data name="DisplayNameWritesCopyright" xml:space="preserve">
     <value>Write copyright</value>
