@@ -77,12 +77,8 @@ namespace CommentGenerator
 
 		/// <summary>改行文字を表す定数</summary>
 		static private readonly string newLine_ = System.Environment.NewLine;
-		/// <summary>拡張機能を使用する人の名前</summary>
-		private string author_ = "";
-		/// <summary>コピーライト表記</summary>
-		private string copyright_ = "";
-		/// <summary>日付文字列の書式</summary>
-		private string dateFormat_ = "";
+		/// <summary>ユーザー設定</summary>
+		private SettingPage setting_;
 
 		/// <summary>
 		/// Initializes the singleton instance of the command.
@@ -110,9 +106,7 @@ namespace CommentGenerator
 			ThreadHelper.ThrowIfNotOnUIThread();
 
 			var package = this.package as CommentExtensionPackage;
-			author_ = package.Setting.Author;
-			copyright_ = package.Setting.Copyright;
-			dateFormat_ = package.Setting.DateFormat;
+			setting_ = package.Setting;
 
 			GenerateComment();
 		}
@@ -317,11 +311,15 @@ namespace CommentGenerator
 
 			List<string> comments = new List<string> {
 				"//************************************************************************************************//",
-				"//! @author " + author_,
-				"//! @date   " + DateTime.Now.ToString(dateFormat_),
-				"//! @note   " + copyright_,
-				"//************************************************************************************************//"
+				"//! @author " + setting_.Author,
+				"//! @date   " + DateTime.Now.ToString(setting_.DateFormat),
 			};
+
+			if (setting_.WritesCopyright) {
+				comments.Add("//! @note   " + setting_.Copyright);
+			}
+
+			comments.Add("//************************************************************************************************//");
 
 			//ファイルの先頭に移動
 			ts.StartOfLine();
@@ -374,7 +372,7 @@ namespace CommentGenerator
 			}
 			comments.Add("/// <returns>" + "</returns>");
 			comments.Add("/// <exception cref=\"Exception\">" + "</exception>");
-			comments.Add("//! @author " + author_);
+			comments.Add("//! @author " + setting_.Author);
 			comments.Add("//------------------------------------------------------------------------------------//");
 
 			//要素の先頭へ移動
@@ -457,7 +455,7 @@ namespace CommentGenerator
 			}
 
 			comments.Add("/// <returns>" + "</returns>");
-			comments.Add("//! @author " + author_);
+			comments.Add("//! @author " + setting_.Author);
 			comments.Add("//------------------------------------------------------------------------------------//");
 
 			//要素の先頭へ移動
@@ -497,7 +495,7 @@ namespace CommentGenerator
 				}
 			}
 
-			comments.Add("//! @author " + author_);
+			comments.Add("//! @author " + setting_.Author);
 			comments.Add("//------------------------------------------------------------------------------------//");
 
 			//定義の先頭へ移動
@@ -543,7 +541,7 @@ namespace CommentGenerator
 				}
 			}
 
-			comments.Add("//! @author " + author_);
+			comments.Add("//! @author " + setting_.Author);
 			comments.Add("//--------------------------------------------------------------------------------------------//");
 
 			//クラス宣言の先頭へ移動
@@ -583,7 +581,7 @@ namespace CommentGenerator
 				"/// <summary>",
 				"/// ",
 				"/// </summary>",
-				"//! @author " + author_
+				"//! @author " + setting_.Author
 			};
 
 			//enum宣言の先頭へ移動

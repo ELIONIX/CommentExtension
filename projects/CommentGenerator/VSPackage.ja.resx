@@ -141,6 +141,9 @@
   <data name="DescriptionDateFormat" xml:space="preserve">
     <value>DateTime.ToString関数で使用されるものと同じ形式の、日付フォーマット文字列。</value>
   </data>
+  <data name="DescriptionWritesCopyright" xml:space="preserve">
+    <value>trueを設定されている時、ファイルヘッダーにコピーライトを記述するようになる。</value>
+  </data>
   <data name="DisplayNameAuthor" xml:space="preserve">
     <value>開発者</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="DisplayNameDateFormat" xml:space="preserve">
     <value>日付フォーマット</value>
+  </data>
+  <data name="DisplayNameWritesCopyright" xml:space="preserve">
+    <value>コピーライトを記述</value>
   </data>
   <data name="ErrorMessageTitle" xml:space="preserve">
     <value>失敗</value>

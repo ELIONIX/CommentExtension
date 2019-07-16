@@ -133,6 +133,15 @@ namespace CommentGenerator {
         }
         
         /// <summary>
+        ///   If set to true, write copyright to the file header. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionWritesCopyright {
+            get {
+                return ResourceManager.GetString("DescriptionWritesCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Author に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DisplayNameAuthor {
@@ -156,6 +165,15 @@ namespace CommentGenerator {
         internal static string DisplayNameDateFormat {
             get {
                 return ResourceManager.GetString("DisplayNameDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Write copyright に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameWritesCopyright {
+            get {
+                return ResourceManager.GetString("DisplayNameWritesCopyright", resourceCulture);
             }
         }
         
