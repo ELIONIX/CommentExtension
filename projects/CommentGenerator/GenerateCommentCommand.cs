@@ -361,8 +361,9 @@ namespace CommentGenerator
 				comments.Add(commentDecoration_);
 			}
 
-			comments.Add("/// <summary>" + "</summary>");
+			comments.Add("/// <summary>");
 			comments.Add("/// ");
+			comments.Add("/// </summary>");
 
 			//ジェネリックな関数の場合typeparamコメントを追加する必要があるが
 			//関数が使用しているgeneric typeを取得するプロパティが無い
@@ -478,8 +479,9 @@ namespace CommentGenerator
 				comments.Add(commentDecoration_);
 			}
 
-			comments.Add("/// <summary>" + "</summary>");
+			comments.Add("/// <summary>");
 			comments.Add("/// ");
+			comments.Add("/// </summary>");
 
 			for (int j = 1; j <= propertyInfo.Parameters.Count; ++j) {
 				CodeParameter paramInfo = (CodeParameter)propertyInfo.Parameters.Item(j);
@@ -517,8 +519,9 @@ namespace CommentGenerator
 				comments.Add(commentDecoration_);
 			}
 
-			comments.Add("/// <summary>" + "</summary>");
+			comments.Add("/// <summary>");
 			comments.Add("/// ");
+			comments.Add("/// </summary>");
 
 			//FxCopの規約により引き数名はsenderとeになっているはずなので決め打ちする
 			//と行きたいところだけど、
@@ -563,12 +566,9 @@ namespace CommentGenerator
 				comments.Add(classCommentDecoration2_);
 			}
 
-			comments.Add("/// <summary>" + "</summary>");
+			comments.Add("/// <summary>");
 			comments.Add("/// ");
-			comments.Add("/// <remarks>");
-			comments.Add("/// ");
-			comments.Add("/// </remarks>");
-
+			comments.Add("/// </summary>");
 			//ジェネリックなクラスの場合もジェネリック関数の時と同じ
 			var elementNames = fullName.Split('.');
 			if (elementNames.Length > 0) {
