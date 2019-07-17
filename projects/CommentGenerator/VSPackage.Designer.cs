@@ -88,6 +88,24 @@ namespace CommentGenerator {
         }
         
         /// <summary>
+        ///   Formats に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CategoryFormats {
+            get {
+                return ResourceManager.GetString("CategoryFormats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Signings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CategorySignings {
+            get {
+                return ResourceManager.GetString("CategorySignings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Name used for author item of document comment. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DescriptionAuthor {
@@ -115,6 +133,42 @@ namespace CommentGenerator {
         }
         
         /// <summary>
+        ///   If set to true, add decoration to the comments of class, function and etc.. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionDecoratesComment {
+            get {
+                return ResourceManager.GetString("DescriptionDecoratesComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If set to true, add decoration to the file header comments. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionDecoratesFileHeader {
+            get {
+                return ResourceManager.GetString("DescriptionDecoratesFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Decide where to write the author&apos;s sign. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionSignsAuthor {
+            get {
+                return ResourceManager.GetString("DescriptionSignsAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If set to true, write copyright to the file header. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DescriptionWritesCopyright {
+            get {
+                return ResourceManager.GetString("DescriptionWritesCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Author に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DisplayNameAuthor {
@@ -138,6 +192,42 @@ namespace CommentGenerator {
         internal static string DisplayNameDateFormat {
             get {
                 return ResourceManager.GetString("DisplayNameDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Decorate comments に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameDecoratesComment {
+            get {
+                return ResourceManager.GetString("DisplayNameDecoratesComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Decorate file header に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameDecoratesFileHeader {
+            get {
+                return ResourceManager.GetString("DisplayNameDecoratesFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sign author に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameSignsAuthor {
+            get {
+                return ResourceManager.GetString("DisplayNameSignsAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Write copyright に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DisplayNameWritesCopyright {
+            get {
+                return ResourceManager.GetString("DisplayNameWritesCopyright", resourceCulture);
             }
         }
         

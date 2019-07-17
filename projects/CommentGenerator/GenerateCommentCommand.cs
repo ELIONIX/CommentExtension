@@ -1,8 +1,8 @@
-﻿//************************************************************************************************//
+﻿//================================================================================================//
 //! @author SAITO Takamasa
 //! @date   2019-05-03
 //! @note   Copyright (c) ELIONIX.Inc. All rights reserved.
-//************************************************************************************************//
+//================================================================================================//
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -76,13 +76,25 @@ namespace CommentGenerator
 		}
 
 		/// <summary>改行文字を表す定数</summary>
-		static private readonly string newLine_ = System.Environment.NewLine;
-		/// <summary>拡張機能を使用する人の名前</summary>
-		private string author_ = "";
-		/// <summary>コピーライト表記</summary>
-		private string copyright_ = "";
-		/// <summary>日付文字列の書式</summary>
-		private string dateFormat_ = "";
+		private static readonly string newLine_ = System.Environment.NewLine;
+
+		/// <summary>ファイルヘッダーの装飾</summary>
+		private static readonly string headerDecoration_
+			= "//================================================================================================//";
+
+		/// <summary>クラスコメントの装飾１</summary>
+		private static readonly string classCommentDecoration1_
+			= "//============================================================================================//";
+		/// <summary>クラスコメントの装飾２</summary>
+		private static readonly string classCommentDecoration2_
+			= "//--------------------------------------------------------------------------------------------//";
+
+		/// <summary>コメントの装飾</summary>
+		private static readonly string commentDecoration_
+			= "//------------------------------------------------------------------------------------//";
+
+		/// <summary>ユーザー設定</summary>
+		private SettingPage setting_;
 
 		/// <summary>
 		/// Initializes the singleton instance of the command.
@@ -110,9 +122,7 @@ namespace CommentGenerator
 			ThreadHelper.ThrowIfNotOnUIThread();
 
 			var package = this.package as CommentExtensionPackage;
-			author_ = package.Setting.Author;
-			copyright_ = package.Setting.Copyright;
-			dateFormat_ = package.Setting.DateFormat;
+			setting_ = package.Setting;
 
 			GenerateComment();
 		}
@@ -315,13 +325,24 @@ namespace CommentGenerator
 			//１行１行出力していくとコードレンズが重いので
 			//他の所と同じようにまとめて出力するように切り替える
 
-			List<string> comments = new List<string> {
-				"//************************************************************************************************//",
-				"//! @author " + author_,
-				"//! @date   " + DateTime.Now.ToString(dateFormat_),
-				"//! @note   " + copyright_,
-				"//************************************************************************************************//"
-			};
+			List<string> comments = new List<string>();
+			if (setting_.DecoratesFileHeader) {
+				comments.Add(headerDecoration_);
+			}
+
+			if (setting_.SignsAuthor != AuthorSignKind.No) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
+			comments.Add("//! @date   " + DateTime.Now.ToString(setting_.DateFormat));
+
+			if (setting_.WritesCopyright) {
+				comments.Add("//! @note   " + setting_.Copyright);
+			}
+
+			if (setting_.DecoratesFileHeader) {
+				comments.Add(headerDecoration_);
+			}
 
 			//ファイルの先頭に移動
 			ts.StartOfLine();
@@ -335,11 +356,14 @@ namespace CommentGenerator
 
 			CodeFunction functionInfo = (CodeFunction)element;
 
-			List<string> comments = new List<string> {
-				"//------------------------------------------------------------------------------------//",
-				"/// <summary>" + "</summary>",
-				"/// "
-			};
+			List<string> comments = new List<string>();
+			if (setting_.DecoratesComment) {
+				comments.Add(commentDecoration_);
+			}
+
+			comments.Add("/// <summary>");
+			comments.Add("/// ");
+			comments.Add("/// </summary>");
 
 			//ジェネリックな関数の場合typeparamコメントを追加する必要があるが
 			//関数が使用しているgeneric typeを取得するプロパティが無い
@@ -374,8 +398,13 @@ namespace CommentGenerator
 			}
 			comments.Add("/// <returns>" + "</returns>");
 			comments.Add("/// <exception cref=\"Exception\">" + "</exception>");
-			comments.Add("//! @author " + author_);
-			comments.Add("//------------------------------------------------------------------------------------//");
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
+			if (setting_.DecoratesComment) {
+				comments.Add(commentDecoration_);
+			}
 
 			//要素の先頭へ移動
 			ts.MoveToPoint(functionInfo.StartPoint);
@@ -445,11 +474,14 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string> {
-				"//------------------------------------------------------------------------------------//",
-				"/// <summary>" + "</summary>",
-				"/// "
-			};
+			List<string> comments = new List<string>();
+			if (setting_.DecoratesComment) {
+				comments.Add(commentDecoration_);
+			}
+
+			comments.Add("/// <summary>");
+			comments.Add("/// ");
+			comments.Add("/// </summary>");
 
 			for (int j = 1; j <= propertyInfo.Parameters.Count; ++j) {
 				CodeParameter paramInfo = (CodeParameter)propertyInfo.Parameters.Item(j);
@@ -457,8 +489,13 @@ namespace CommentGenerator
 			}
 
 			comments.Add("/// <returns>" + "</returns>");
-			comments.Add("//! @author " + author_);
-			comments.Add("//------------------------------------------------------------------------------------//");
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
+			if (setting_.DecoratesComment) {
+				comments.Add(commentDecoration_);
+			}
 
 			//要素の先頭へ移動
 			ts.MoveToPoint(propertyInfo.StartPoint);
@@ -477,11 +514,14 @@ namespace CommentGenerator
 
 			CodeDelegate delegateInfo = (CodeDelegate)element;
 
-			List<string> comments = new List<string> {
-				"//------------------------------------------------------------------------------------//",
-				"/// <summary>" + "</summary>",
-				"/// "
-			};
+			List<string> comments = new List<string>();
+			if (setting_.DecoratesComment) {
+				comments.Add(commentDecoration_);
+			}
+
+			comments.Add("/// <summary>");
+			comments.Add("/// ");
+			comments.Add("/// </summary>");
 
 			//FxCopの規約により引き数名はsenderとeになっているはずなので決め打ちする
 			//と行きたいところだけど、
@@ -497,8 +537,13 @@ namespace CommentGenerator
 				}
 			}
 
-			comments.Add("//! @author " + author_);
-			comments.Add("//------------------------------------------------------------------------------------//");
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
+			if (setting_.DecoratesComment) {
+				comments.Add(commentDecoration_);
+			}
 
 			//定義の先頭へ移動
 			ts.MoveToPoint(element.StartPoint);
@@ -515,16 +560,15 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string> {
-				"//********************************************************************************************//",
-				"//--------------------------------------------------------------------------------------------//",
-				"/// <summary>" + "</summary>",
-				"/// ",
-				"/// <remarks>",
-				"/// ",
-				"/// </remarks>"
-			};
+			List<string> comments = new List<string>();
+			if (setting_.DecoratesComment) {
+				comments.Add(classCommentDecoration1_);
+				comments.Add(classCommentDecoration2_);
+			}
 
+			comments.Add("/// <summary>");
+			comments.Add("/// ");
+			comments.Add("/// </summary>");
 			//ジェネリックなクラスの場合もジェネリック関数の時と同じ
 			var elementNames = fullName.Split('.');
 			if (elementNames.Length > 0) {
@@ -543,8 +587,13 @@ namespace CommentGenerator
 				}
 			}
 
-			comments.Add("//! @author " + author_);
-			comments.Add("//--------------------------------------------------------------------------------------------//");
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
+			if (setting_.DecoratesComment) {
+				comments.Add(classCommentDecoration2_);
+			}
 
 			//クラス宣言の先頭へ移動
 			ts.MoveToPoint(element.StartPoint);
@@ -575,18 +624,28 @@ namespace CommentGenerator
 			GenerateClassCommentCore(ts, element, fullName);
 		}
 
-		private void GenerateEnumCommentCore(TextSelection ts, CodeElement element)
+		private void GenerateStructCommentCore(TextSelection ts, CodeElement element)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			List<string> comments = new List<string> {
-				"/// <summary>",
-				"/// ",
-				"/// </summary>",
-				"//! @author " + author_
-			};
+			List<string> comments = new List<string>();
+			if (setting_.DecoratesComment) {
+				comments.Add(classCommentDecoration1_);
+				comments.Add(classCommentDecoration2_);
+			}
 
-			//enum宣言の先頭へ移動
+			comments.Add("/// <summary>");
+			comments.Add("/// ");
+			comments.Add("/// </summary>");
+			if (setting_.SignsAuthor == AuthorSignKind.Yes) {
+				comments.Add("//! @author " + setting_.Author);
+			}
+
+			if (setting_.DecoratesComment) {
+				comments.Add(classCommentDecoration2_);
+			}
+
+			//構造体宣言の先頭へ移動
 			ts.MoveToPoint(element.StartPoint);
 			//インデントの取得
 			string indent = GetIndentText(ts);
@@ -601,14 +660,14 @@ namespace CommentGenerator
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			GenerateEnumCommentCore(ts, element);
+			GenerateStructCommentCore(ts, element);
 		}
 
 		private void GenerateStructComment(TextSelection ts, CodeElement element)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();
 
-			GenerateEnumCommentCore(ts, element);
+			GenerateStructCommentCore(ts, element);
 		}
 
 		//名前空間に再対応するときのために取っておくが、
